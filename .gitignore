@@ -8,3 +8,21 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Environment variables (jangan pernah di-commit!)
+.env
+*.env
+
+# Database (data lokal, jangan di-commit)
+data/*.db
+data/*.sqlite
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
