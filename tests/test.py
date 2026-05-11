@@ -1,13 +1,17 @@
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 from src.services.vision import compress_image
 
-with open("denah1.jpeg", "rb") as f:
-    original = f.read()
+from src.services.vision import hause_plan_result
 
-compressed = compress_image(original, max_size=1024)
+print('correct')
+with open("tests/denah1.jpeg", "rb") as f:
+    img = f.read()
 
-with open("compressed_test.jpg", "wb") as f:
-    f.write(compressed)
+result = hause_plan_result(img)
 
-print(f"Original:   {len(original):>10} bytes")
-print(f"Compressed: {len(compressed):>10} bytes")
-print(f"Saved to: compressed_test.jpg")
+print(f"Rooms found: {len(result.rooms)}")
+for room in result.rooms:
+    print(f"  - {room}")
+print(f"Warnings: {result.warning}")
