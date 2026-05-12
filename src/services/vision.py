@@ -79,6 +79,8 @@ def _call_vision_model(img_url: str, prompt: str, temp: float) -> str:
 
 def _parse_response(raw:str) -> HousePlanParsed:
     cleaned = _clean_llm_output(raw)
+    print("--- parse response ---")
+    print(cleaned)
 
     try:
         data = json.loads(cleaned)

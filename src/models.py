@@ -2,14 +2,14 @@ from __future__ import annotations
 from pydantic import BaseModel, Field, field_validator
 from typing import Literal
 
-ConfidenceLvl = Literal['Low', 'Medium', 'High']
+ConfidenceLvl = Literal['low', 'medium', 'high']
 
 class ParsedRoom(BaseModel):
     """Parsing result of a single room"""
 
     name: str = Field(..., min_length=1, max_length=100)
-    length: int = Field(gt=0, le=1000, description="The length of the room")
-    width: int = Field(gt=0, le=1000, description="The width of the room")
+    length: float = Field(gt=0, le=1000, description="The length of the room")
+    width: float = Field(gt=0, le=1000, description="The width of the room")
     confidence : ConfidenceLvl
     notes: str | None = None
 
