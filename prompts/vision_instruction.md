@@ -22,7 +22,7 @@ Schema:
     }
   ],
   "scale": "string | null",
-  "warning": ["string"]
+  "warnings": ["string"]
 }
 ```
 
@@ -41,7 +41,7 @@ Schema:
 - `length` = sisi yang lebih panjang, `width` = sisi yang lebih pendek.
 - Kalau dimensi tertulis di denah (misal "3.5 x 4.0 m" atau "350x400"), pakai itu.
 - Kalau cuma ada angka tanpa unit, **asumsikan satuannya cm** kalau angkanya > 50, dan **meter** kalau ≤ 50. Convert ke meter.
-- Kalau dimensi sama sekali tidak terlihat / tidak ada skala, **estimasi proporsional** berdasarkan ukuran relatif terhadap rooms lain yang dimensinya jelas. Set `confidence: "low"` dan tambahkan ke `warning`.
+- Kalau dimensi sama sekali tidak terlihat / tidak ada skala, **estimasi proporsional** berdasarkan ukuran relatif terhadap rooms lain yang dimensinya jelas. Set `confidence: "low"` dan tambahkan ke `warnings`.
 
 ### `confidence`
 - `"high"` → dimensi tertulis jelas di denah, atau ada skala bar yang valid.
@@ -56,7 +56,7 @@ Schema:
 - Kalau ada skala bar atau notasi skala (misal "1:100"), tulis di sini: `"1:100"` atau `"skala bar 1m"`.
 - Set `null` kalau tidak ada.
 
-### `warning`
+### `warnings`
 - Array of string. Isi dengan masalah yang user perlu tahu, misal:
   - `"Beberapa dimensi tidak terbaca jelas, hasil estimasi"`
   - `"Denah terlihat memiliki 2 lantai, hanya lantai 1 yang di-parse"`
@@ -90,7 +90,7 @@ Output:
     {"name": "dapur", "length": 3.0, "width": 2.5, "confidence": "high", "notes": null}
   ],
   "scale": "1:100",
-  "warning": []
+  "warnings": []
 }
 ```
 
@@ -101,4 +101,4 @@ Output:
 - JSON-only. Tidak ada text di luar JSON object.
 - Tidak ada markdown fence.
 - Semua field wajib ada (kecuali yang nullable).
-- Kalau ragu, set `confidence` ke `"low"` dan jelaskan di `warning` — **lebih baik jujur daripada nebak diam-diam**.
+- Kalau ragu, set `confidence` ke `"low"` dan jelaskan di `warnings` — **lebih baik jujur daripada nebak diam-diam**.

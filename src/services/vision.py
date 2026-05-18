@@ -94,7 +94,7 @@ def _parse_response(raw:str) -> HousePlanParsed:
         logger.warning("Pydantic validation error: %s", e)
         raise VisionParseError(f"Schema tidak sesuai: {e}") from e
     
-def hause_plan_result(img_bytes: bytes) -> HousePlanParsed:
+def house_plan_result(img_bytes: bytes) -> HousePlanParsed:
     compressed_img = compress_image(img_bytes)
     data_url = img_to_base64_url(compressed_img)
     prompt = _load_prompt()
@@ -117,7 +117,7 @@ def hause_plan_result(img_bytes: bytes) -> HousePlanParsed:
             logger.info(
                 "Vision parse berhasil: %d ruangan, %d warnings",
                 len(result.rooms),
-                len(result.warning),
+                len(result.warnings),
             )
             return result
         except VisionParseError as e:
